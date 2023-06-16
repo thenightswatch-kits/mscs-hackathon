@@ -4,10 +4,32 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-
+import { Grid, GridItem, Text } from '@chakra-ui/react'
+import data from './../data';
+import BarChart from './components/DashBC'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+
+  //Counts the societies in 
+  const states: any[] = [];
+  const stateCount:any = {};
+  for (const obj of data) {
+    const state = obj.state.toUpperCase();
+  
+    // Store state names in an array
+    if (!states.includes(state)) {
+      states.push(state);
+    }
+  
+    // Count the occurrences of each state
+    if (stateCount[state]) {
+      stateCount[state]++;
+    } else {
+      stateCount[state] = 1;
+    }
+  }
+  console.log(stateCount)
   return (
     <>
       <Head>
@@ -17,9 +39,30 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
-      <Navbar children={undefined}/>
+        <Navbar children={undefined} />
+        <Grid
+          h='90vh'
+          w='auto'
+          marginLeft={{base:0, md:60}}
+          templateRows={{base:'auto',md:'repeat(2, 1fr)'}}
+          templateColumns={{base:'auto',md:'repeat(3, 1fr)'}}
+        >
+          {/* <GridItem rowSpan={2} colSpan={1} bg='tomato' /> */}
+          <GridItem colSpan={2} padding={2}>
+          <Text>State-wise Distribution</Text>
+          <BarChart vdata={stateCount} />
+          </GridItem>
+          <GridItem colSpan={1} bg='papayawhip'>
+          </GridItem>
+          <GridItem colSpan={1} bg='tomato'>
+          </GridItem>
+          <GridItem colSpan={1} bg='tomato'>
+          </GridItem>
+          <GridItem colSpan={1} bg='tomato'>
+          </GridItem>
+        </Grid>
+        <Footer />
       </main>
-      <Footer/>
     </>
   )
 }
