@@ -4,16 +4,19 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import { Grid, GridItem, Text } from '@chakra-ui/react'
+import { Grid, GridItem, Spacer, Text } from '@chakra-ui/react'
 import data from './../data';
 import BarChart from './components/DashBC'
+import DonutChart from './components/DashDC'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 
-  //Counts the societies in 
+  //Counts the societies in data
   const states: any[] = [];
   const stateCount:any = {};
+  const ddata = [30, 40, 45, 50, 49];
+  const labels = ['Label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5'];
   for (const obj of data) {
     const state = obj.state.toUpperCase();
   
@@ -29,7 +32,20 @@ export default function Home() {
       stateCount[state] = 1;
     }
   }
-  console.log(stateCount)
+  // -----------------------------------------------------------------------
+
+  //Calculate the count by year
+  const countByYear = data.reduce((acc:any, obj) => {
+    const year = obj.data_of_registration.split('/')[2];
+    if (year) {
+      acc[year] = (acc[year] || 0) + 1;
+    }
+    return acc;
+  }, {});
+  
+  //------------------------------------------------------------------------
+  console.log(countByYear)
+
   return (
     <>
       <Head>
@@ -47,13 +63,19 @@ export default function Home() {
           templateRows={{base:'auto',md:'repeat(2, 1fr)'}}
           templateColumns={{base:'auto',md:'repeat(3, 1fr)'}}
         >
-          {/* <GridItem rowSpan={2} colSpan={1} bg='tomato' /> */}
+          {/* Displays the Bar Chart */}
           <GridItem colSpan={2} padding={2}>
-          <Text>State-wise Distribution</Text>
+          <Text marginLeft={5}>State-wise Distribution</Text>
           <BarChart vdata={stateCount} />
           </GridItem>
-          <GridItem colSpan={1} bg='papayawhip'>
+
+          {/* Displays the Donut */}
+          <GridItem display={'flex'} colSpan={1} p={2} alignItems={'center'} justifyContent={'start'} flexDirection={'column'}>
+          <Text alignSelf={'start'}>Yearly Registrations</Text>
+          <br></br>
+          <DonutChart  countByYear={countByYear} />
           </GridItem>
+
           <GridItem colSpan={1} bg='tomato'>
           </GridItem>
           <GridItem colSpan={1} bg='tomato'>
