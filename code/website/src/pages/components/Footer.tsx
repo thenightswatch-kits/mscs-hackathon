@@ -6,6 +6,7 @@ import {
     Text,
     useColorModeValue,
     VisuallyHidden,
+    Heading
   } from '@chakra-ui/react';
   import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
   import { ReactNode } from 'react';
@@ -50,18 +51,20 @@ import {
   export default function Footer() {
     return (
       <Box
-        bg={useColorModeValue('gray.50', 'gray.900')}
-        color={useColorModeValue('gray.700', 'gray.200')}>
+        bg={useColorModeValue('#37375C', 'gray.900')}
+        color={useColorModeValue('white', 'gray.200')}
+        z-index='90'
+        >
         <Container
           as={Stack}
           maxW={'6xl'}
           py={4}
           direction={{ base: 'column', md: 'row' }}
           spacing={4}
-          justify={{ base: 'center', md: 'space-between' }}
+          justify={{ base: 'center', md: 'center' }}
           align={{ base: 'center', md: 'center' }}>
-          <Logo />
-          <Text>© Ministry of Cooperation, Govt. of India</Text>
+          {/* <Logo /> */}
+          <Heading size={'md'}> Ministry of Cooperation, Govt. of India</Heading>
           <Stack direction={'row'} spacing={6}>
             {/* <SocialButton label={'Twitter'} href={'#'}>
               <FaTwitter />

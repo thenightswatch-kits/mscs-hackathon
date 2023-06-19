@@ -4,27 +4,30 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import { Grid, GridItem, Spacer, Text } from '@chakra-ui/react'
+import { Grid, GridItem, Spacer, Text, Heading } from '@chakra-ui/react'
 import data from './../data';
 import BarChart from './components/DashBC'
 import DonutChart from './components/DashDC'
+import { DashRecent } from './components/DashRecent'
+import { DashMonthly } from './components/DashMonthly'
+import CustomAngleCircleChart from './components/DashSector'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 
   //Counts the societies in data
   const states: any[] = [];
-  const stateCount:any = {};
+  const stateCount: any = {};
   const ddata = [30, 40, 45, 50, 49];
   const labels = ['Label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5'];
   for (const obj of data) {
     const state = obj.state.toUpperCase();
-  
+
     // Store state names in an array
     if (!states.includes(state)) {
       states.push(state);
     }
-  
+
     // Count the occurrences of each state
     if (stateCount[state]) {
       stateCount[state]++;
@@ -35,16 +38,89 @@ export default function Home() {
   // -----------------------------------------------------------------------
 
   //Calculate the count by year
-  const countByYear = data.reduce((acc:any, obj) => {
+  const countByYear = data.reduce((acc: any, obj) => {
     const year = obj.data_of_registration.split('/')[2];
     if (year) {
       acc[year] = (acc[year] || 0) + 1;
     }
     return acc;
   }, {});
-  
   //------------------------------------------------------------------------
-  console.log(countByYear)
+
+  //Get the latest Socities
+  const sorted_data = data.sort((a, b): any => new Date(b.data_of_registration).getTime() - new Date(a.data_of_registration).getTime())
+  //------------------------------------------------------------------------
+  // Get the Monthly stats
+
+  interface RegistrationData {
+    id: string;
+    name: string;
+    address: string;
+    state: string;
+    district: string;
+    date_of_registration: string;
+    area_of_operation: string;
+    sector: string;
+  }
+
+
+
+  // Create an object to store the registration counts per year
+  const monthlyCounts: any = {};
+  const years = Array.from(new Set(data.map(item => new Date(item.data_of_registration).getFullYear())));
+  // Iterate over the data and process the date_of_registration field
+  data.forEach(item => {
+    const month = item.data_of_registration.split('/')[1]
+    const year = item.data_of_registration.split('/')[2]
+    if (!monthlyCounts[year]) {
+      monthlyCounts[year] = {};
+    }
+    if (!monthlyCounts[year][month]) {
+      monthlyCounts[year][month] = 0;
+    }
+    monthlyCounts[year][month]++
+  });
+
+  const currentYear = new Date().getFullYear();
+  for (let year = 2016; year <= currentYear; year++) {
+    if (!monthlyCounts[year]) {
+      monthlyCounts[year] = {};
+    }
+
+    for (let month = 0; month < 12; month++) {
+      let monthf: any = String(month)
+      if (month < 10) {
+        monthf = '0' + monthf
+      }
+      if (!monthlyCounts[year][monthf]) {
+        monthlyCounts[year][monthf] = 0;
+      }
+    }
+  }
+
+
+  //Count the sectors
+  const sectorCount: Record<string, number> = {};
+
+  data.forEach(item => {
+    if (sectorCount[item.sector]) {
+      sectorCount[item.sector]++;
+    } else {
+      sectorCount[item.sector] = 1;
+    }
+  });
+
+  const sortedSectorCount: [string, number][] = Object.entries(sectorCount)
+    .sort(([, countA], [, countB]) => countB - countA);
+
+  const topFiveSectors: string[] = sortedSectorCount.slice(0, 5).map(([sector]) => sector);
+  const topFiveSectorCounts: number[] = sortedSectorCount.slice(0, 5).map(([, count]) => count);
+
+  console.log(topFiveSectors);
+  console.log(topFiveSectorCounts);
+
+
+
 
   return (
     <>
@@ -57,30 +133,43 @@ export default function Home() {
       <main className={`${styles.main} ${inter.className}`}>
         <Navbar children={undefined} />
         <Grid
-          h='90vh'
+          h='auto'
           w='auto'
-          marginLeft={{base:0, md:60}}
-          templateRows={{base:'auto',md:'repeat(2, 1fr)'}}
-          templateColumns={{base:'auto',md:'repeat(3, 1fr)'}}
+          marginLeft={{ base: 0, md: 60 }}
+          templateRows={{ base: 'auto', md: 'repeat(2, 1fr)' }}
+          templateColumns={{ base: 'auto', md: 'repeat(3, 1fr)' }}
+          gap='0.5'
+          bgColor={'#CBD5E0'}
         >
           {/* Displays the Bar Chart */}
-          <GridItem colSpan={2} padding={2}>
-          <Text marginLeft={5}>State-wise Distribution</Text>
-          <BarChart vdata={stateCount} />
+          <GridItem colSpan={2} display={'flex'} flexDirection={'column'} justifyContent={'flex-start'} padding={5} bgColor={'white'}>
+            <Heading size='md'>State-wise Distribution</Heading>
+            <br></br>
+            <Text alignSelf={'start'}>Societies in all the states</Text>
+            <BarChart vdata={stateCount} />
           </GridItem>
 
           {/* Displays the Donut */}
-          <GridItem display={'flex'} colSpan={1} p={2} alignItems={'center'} justifyContent={'start'} flexDirection={'column'}>
-          <Text alignSelf={'start'}>Yearly Registrations</Text>
-          <br></br>
-          <DonutChart  countByYear={countByYear} />
+          <GridItem display={'flex'} colSpan={1} p={2} alignItems={'center'} justifyContent={'flex-start'} flexDirection={'column'} bgColor={'white'}>
+            <Heading alignSelf={'start'} size='md'>Yearly Registrations</Heading>
+            <br></br>
+            <Text alignSelf={'start'}>From 2016 to {currentYear}</Text>
+            <br></br>
+            <DonutChart countByYear={countByYear} />
           </GridItem>
 
-          <GridItem colSpan={1} bg='tomato'>
+          <GridItem colSpan={1} display={'flex'} flexDirection={'column'} p={10} justifyContent={'space-around'} bgColor={'white'}>
+            <Heading size='md'>Top Sector Types</Heading>
+            <Text alignSelf={'start'}>Top Five Sectors from 2016 to {currentYear}</Text>
+            <CustomAngleCircleChart sectors={topFiveSectors} counts={topFiveSectorCounts} />
           </GridItem>
-          <GridItem colSpan={1} bg='tomato'>
+          <GridItem colSpan={1} bgColor={'white'}>
+            <DashRecent sorted_data={sorted_data} />
           </GridItem>
-          <GridItem colSpan={1} bg='tomato'>
+          <GridItem colSpan={1} display={'flex'} flexDirection={'column'} p={10} justifyContent={'space-around'} bgColor={'white'} >
+            <Heading size='md'>Monthly Registrations</Heading>
+            <Text alignSelf={'start'}>Monthly registrations {currentYear - 2} vs  {currentYear - 1}</Text>
+            <DashMonthly monthlyCounts={monthlyCounts} />
           </GridItem>
         </Grid>
         <Footer />

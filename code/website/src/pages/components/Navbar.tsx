@@ -21,6 +21,7 @@ import {
     MenuDivider,
     MenuItem,
     MenuList,
+    Heading,
     Input,
     InputLeftElement,
     InputGroup
@@ -131,8 +132,8 @@ const NavItem = ({ url, icon, children, ...rest }: NavItemProps) => {
                 role="group"
                 cursor="pointer"
                 _hover={{
-                    bg: 'cyan.400',
-                    color: 'white',
+                    bg: 'purple.100',
+                    color: 'purple.500',
                 }}
                 {...rest}>
                 {icon && (
@@ -140,7 +141,7 @@ const NavItem = ({ url, icon, children, ...rest }: NavItemProps) => {
                         mr="4"
                         fontSize="16"
                         _groupHover={{
-                            color: 'white',
+                            color: 'purple.500',
                         }}
                         as={icon}
                     />
@@ -183,7 +184,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
             </Text>
             <HStack  padding={'5'} display={{ base: 'none', md: 'flex' }}>
             <img src='https://mscs.dac.gov.in/images/MSCS_LOGO.png' width={'70px'} height={'70px'}></img>
-                <Text fontSize="lg" display={{ base: 'none', md: 'flex' }}>MULTI-STATE CO-OPERATIVE SOCIETIES</Text>
+                <Heading color={'#5A67BA'} size={'md'} display={{ base: 'none', md: 'flex' }}>MULTI-STATE CO-OPERATIVE SOCIETIES</Heading>
                 </HStack>
                 <InputGroup width={'40%'} display={{ base: 'none', md: 'flex' }}>
                     <InputLeftElement pointerEvents='none'>

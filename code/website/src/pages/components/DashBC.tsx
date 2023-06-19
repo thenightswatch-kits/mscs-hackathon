@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from 'react';
 import dynamic from 'next/dynamic';
 import 'apexcharts/dist/apexcharts.css';
@@ -12,8 +13,10 @@ const BarChart: React.FC<BarChartProps> = ({ vdata }) => {
   const categories = Object.keys(vdata);
   const data = Object.values(vdata);
   const options = {
+    colors: '#5A6ACF',
     chart: {
       id: 'basic-bar',
+      
     },
     xaxis: {
       categories,
