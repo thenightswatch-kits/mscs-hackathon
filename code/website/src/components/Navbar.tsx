@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import ChatBot from './ChatBot';
 import {
     IconButton,
     Avatar,
@@ -82,6 +83,7 @@ export default function Navbar({
             {/* <Box ml={{ base: 0, md: 60 }} p="4">
                 {children}
             </Box> */}
+            <ChatBot/>
         </Box>
     );
 }

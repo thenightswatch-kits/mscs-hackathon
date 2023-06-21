@@ -12,7 +12,7 @@ import { DashRecent } from '../components/DashRecent'
 import { DashMonthly } from '../components/DashMonthly'
 import CustomAngleCircleChart from '../components/DashSector'
 const inter = Inter({ subsets: ['latin'] })
-
+import ChatBot from '@/components/ChatBot'
 export default function Home() {
 
   //Counts the societies in data
