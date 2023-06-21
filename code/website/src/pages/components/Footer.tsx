@@ -51,9 +51,11 @@ import {
   export default function Footer() {
     return (
       <Box
+      position={'relative'}
         bg={useColorModeValue('#37375C', 'gray.900')}
         color={useColorModeValue('white', 'gray.200')}
         z-index='90'
+       
         >
         <Container
           as={Stack}

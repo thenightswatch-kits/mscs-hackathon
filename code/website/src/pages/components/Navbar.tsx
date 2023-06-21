@@ -48,7 +48,7 @@ interface LinkItemProps {
 }
 const LinkItems: Array<LinkItemProps> = [
     { name: 'Dashboard', icon: FiHome, url: "/" },
-    { name: 'Specific Details', icon: FiTrendingUp, url: "/details" },
+    { name: 'Societies', icon: FiTrendingUp, url: "/societies" },
     { name: 'Forms', icon: FiCompass, url: "/forms" },
 
 ];
@@ -103,7 +103,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
             {...rest}>
             <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
                 <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-                    
+
                 </Text>
                 <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
             </Flex>
@@ -173,29 +173,24 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                 variant="outline"
                 aria-label="open menu"
                 icon={<FiMenu />}
-            />
-
-            <Text
-                display={{ base: 'flex', md: 'none' }}
-                fontSize="2xl"
-                fontFamily="monospace"
-                fontWeight="bold">
-                Logo
-            </Text>
-            <HStack  padding={'5'} display={{ base: 'none', md: 'flex' }}>
-            <img src='https://mscs.dac.gov.in/images/MSCS_LOGO.png' width={'70px'} height={'70px'}></img>
+            />  
+            <Box display={{base:'grid',md:'none'}}>
+            <img src='https://mscs.dac.gov.in/images/MSCS_LOGO.png' width={'60px'} height={'60px'}></img>
+            </Box>
+            <HStack padding={'5'} display={{ base: 'none', md: 'flex' }}>
+                <img src='https://mscs.dac.gov.in/images/MSCS_LOGO.png' width={'70px'} height={'70px'}></img>
                 <Heading color={'#5A67BA'} size={'md'} display={{ base: 'none', md: 'flex' }}>MULTI-STATE CO-OPERATIVE SOCIETIES</Heading>
-                </HStack>
-                <InputGroup width={'40%'} display={{ base: 'none', md: 'flex' }}>
-                    <InputLeftElement pointerEvents='none'>
-                        <FiSearch color='gray.300' />
-                    </InputLeftElement>
-                    <Input type='text' placeholder='search' />
-                </InputGroup>
-            <HStack  padding={'5'} display={{ base: 'flex', md: 'none' }}>
+            </HStack>
+            <InputGroup width={'40%'} display={{ base: 'none', md: 'flex' }}>
+                <InputLeftElement pointerEvents='none'>
+                    <FiSearch color='gray.300' />
+                </InputLeftElement>
+                <Input type='text' placeholder='Search' />
+            </InputGroup>
+            <HStack padding={'5'} display={{ base: 'flex', md: 'none' }}>
 
             </HStack>
-                {/*
+            {/*
                  <IconButton
           size="lg"
           variant="ghost"
@@ -241,7 +236,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
             </MenuList>
           </Menu>
         </Flex></HStack> */}
-            
+
         </Flex>
     );
 };

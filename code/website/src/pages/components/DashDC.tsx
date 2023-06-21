@@ -33,6 +33,7 @@ const DonutChart: React.FC<DonutChartProps> = ({ countByYear }) => {
       legend: {
         position: 'bottom',
       },
+      colors: ['#37375C', '#4D4DAE', '#5A6ACF', '#8593ED', '#282843', '#C7CEFF', '#8282ED'],
   };
 
   return <ApexChart options={options} series={series} type="donut" width={'120%'}/>;

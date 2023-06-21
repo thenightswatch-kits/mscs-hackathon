@@ -85,69 +85,72 @@ import 'apexcharts/dist/apexcharts.css';
 const ApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 interface CustomAngleCircleChartProps {
-    [year: string]: number;
+  [year: string]: number;
 }
 
-const CustomAngleCircleChart= ( {counts, sectors} ) => {
-    const options = {
-                series: counts,
-                chart: {
-              
-                type: 'radialBar',
-              },
-              plotOptions: {
-                radialBar: {
-                  offsetY: 15,
-                  startAngle: 0,
-                  endAngle: 270,
-                  hollow: {
-                    margin: 5,
-                    size: '30%',
-                    background: 'transparent',
-                    image: undefined,
-                  },
-                  dataLabels: {
-                    name: {
-                      show: false,
-                    },
-                    value: {
-                      show: false,
-                    }
-                  }
-                }
-              },
-              labels: sectors,
-              legend: {
-                show: true,
-                floating: true,
-                fontSize: '16px',
-                position: 'left',
-                offsetX: 0,
-                offsetY: 0,
-                labels: {
-                  useSeriesColors: true,
-                },
-                markers: {
-                  size: 0
-                },
-                formatter: function(seriesName:String, opts:any) {
-                  return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex]
-                },
-                itemMargin: {
-                  vertical: 3
-                }
-              },
-              responsive: [{
-                breakpoint: 480,
-                options: {
-                  legend: {
-                      show: false
-                  }
-                }
-              }]
-              }
+const CustomAngleCircleChart = ({ counts, sectors }) => {
+  const options = {
+    series: counts,
+    chart: {
 
-  return <ApexChart options={options} series={options.series} type="radialBar"/>;
+      type: 'radialBar',
+    },
+    plotOptions: {
+      radialBar: {
+        offsetY: 15,
+        startAngle: 0,
+        endAngle: 270,
+        hollow: {
+          margin: 5,
+          size: '30%',
+          background: 'transparent',
+          image: undefined,
+        },
+        dataLabels: {
+          name: {
+            show: false,
+          },
+          value: {
+            show: false,
+          }
+        }
+      }
+    },
+    labels: sectors,
+    colors: ['#37375C', '#4D4DAE', '#5A6ACF', '#8593ED', '#8282ED'],
+    legend: {
+      show: true,
+      floating: true,
+      fontSize: '16px',
+      position: 'left',
+      offsetX: 0,
+      offsetY: 0,
+      labels: {
+        useSeriesColors: true,
+      },
+      markers: {
+        size: 10
+      },
+      formatter: function (seriesName: String, opts: any) {
+        return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex]
+      },
+      itemMargin: {
+        vertical: 3
+      }
+    },
+    responsive: [{
+      breakpoint: 480,
+      options: {
+        legend: {
+          fontSize: '8px',
+          show: true,
+          position: 'top',
+        }
+      }
+    }]
+  }
+
+  return <ApexChart options={options} series={options.series} type="radialBar" />;
 };
 
 export default CustomAngleCircleChart;

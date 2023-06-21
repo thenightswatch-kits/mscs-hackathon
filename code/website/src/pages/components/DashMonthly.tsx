@@ -32,7 +32,7 @@ export const DashMonthly = ({monthlyCounts}:any) => {
           }
         },
         xaxis: {
-          categories: ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug' , 'sep' , 'oct' , 'nov' , 'dec']
+          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug' , 'Sep' , 'Oct' , 'Nov' , 'Dec']
         }
       }
     };
