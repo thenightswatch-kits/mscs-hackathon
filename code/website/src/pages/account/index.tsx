@@ -45,7 +45,8 @@ export default function Home() {
             </Head>
             <main className={`${styles.main} ${inter.className}`}>
                 <Navbar children={undefined} />
-                
+                <Box marginLeft={{ base: 0, md: 60 }} minHeight={'100vh'}>
+                </Box>
                 <Footer />
             </main>
         </>
