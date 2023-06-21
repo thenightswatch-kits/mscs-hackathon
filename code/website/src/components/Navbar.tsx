@@ -134,8 +134,9 @@ const NavItem = ({ url, icon, children, ...rest }: NavItemProps) => {
                 role="group"
                 cursor="pointer"
                 _hover={{
-                    bg: 'purple.100',
-                    color: 'purple.500',
+                    bg: '#A1ACEF',
+                    color: '#37375C',
+                    opacity: '100%'
                 }}
                 {...rest}>
                 {icon && (
@@ -143,7 +144,7 @@ const NavItem = ({ url, icon, children, ...rest }: NavItemProps) => {
                         mr="4"
                         fontSize="16"
                         _groupHover={{
-                            color: 'purple.500',
+                            color: '#37375C',
                         }}
                         as={icon}
                     />
