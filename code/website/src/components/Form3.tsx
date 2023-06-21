@@ -46,7 +46,7 @@ function Form3() {
                     <Text>Signature of Returning Officer Or person authorized by him</Text>
                 </Box>
                 <Box textAlign='left'>
-                    <Link color='teal.500'><Text as='u'>DOWNLOAD FORM 3 IN PDF</Text></Link>
+                    <Link color='teal.500' href='https://mscs.dac.gov.in/Form/Form3.pdf' target='_blank'><Text as='u'>DOWNLOAD FORM 3 IN PDF</Text></Link>
                 </Box>
             </Box>
         </>

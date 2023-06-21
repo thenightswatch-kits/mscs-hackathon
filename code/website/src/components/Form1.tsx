@@ -110,7 +110,7 @@ function Form1(){
         <Box textAlign='left'>
           <Text>* If representing a co-operative or any other co-operative body enclose a copy of the Resolution or authorization of the competent authority, authorizing the person to sign the application for registration.</Text>
           <Text>+ blanks to be filled in.</Text>
-          <Link color='teal.500'><Text as='u'>DOWNLOAD FORM 1 IN PDF</Text></Link>
+          <Link color='teal.500' href='https://mscs.dac.gov.in/Form/Form1.pdf' target='_blank'><Text as='u'>DOWNLOAD FORM 1 IN PDF</Text></Link>
         </Box>
       </Box>
       <style>{`

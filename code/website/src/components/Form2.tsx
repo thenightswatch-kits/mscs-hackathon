@@ -82,7 +82,7 @@ function Form2() {
                     <br />
                 </Box>
                 <Box textAlign='left'>
-                    <Link color='teal.500'><Text as='u'>DOWNLOAD FORM 2 IN PDF</Text></Link>
+                    <Link color='teal.500' href='https://mscs.dac.gov.in/Form/Form2.pdf' target='_blank'><Text as='u'>DOWNLOAD FORM 2 IN PDF</Text></Link>
                 </Box>
             </Box>
             <style>{`

@@ -17,7 +17,7 @@ function Form4() {
                     <Text>Name and Signature of the candidate   </Text><br /><br />
                 </Box>
                 <Box textAlign='left'>
-                    <Link color='teal.500'><Text as='u'>DOWNLOAD FORM 4 IN PDF</Text></Link>
+                    <Link color='teal.500' href='https://mscs.dac.gov.in/Form/Form4.pdf' target='_blank'><Text as='u'>DOWNLOAD FORM 4 IN PDF</Text></Link>
                 </Box>
             </Box>
         </>

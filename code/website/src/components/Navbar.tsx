@@ -50,6 +50,7 @@ const LinkItems: Array<LinkItemProps> = [
     { name: 'Dashboard', icon: FiHome, url: "/" },
     { name: 'Societies', icon: FiTrendingUp, url: "/societies" },
     { name: 'Forms', icon: FiCompass, url: "/forms" },
+    { name: 'Acts', icon: FiCompass, url: "/acts" },
 
 ];
 
@@ -181,12 +182,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                 <img src='https://mscs.dac.gov.in/images/MSCS_LOGO.png' width={'70px'} height={'70px'}></img>
                 <Heading color={'#5A67BA'} size={'md'} display={{ base: 'none', md: 'flex' }}>MULTI-STATE CO-OPERATIVE SOCIETIES</Heading>
             </HStack>
-            <InputGroup width={'40%'} display={{ base: 'none', md: 'flex' }}>
-                <InputLeftElement pointerEvents='none'>
-                    <FiSearch color='gray.300' />
-                </InputLeftElement>
-                <Input type='text' placeholder='Search' />
-            </InputGroup>
+            
             <HStack padding={'5'} display={{ base: 'flex', md: 'none' }}>
 
             </HStack>

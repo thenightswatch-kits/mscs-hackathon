@@ -7,8 +7,10 @@ import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import states from '../../data/states'
 import sectors from '../../data/sectors'
-import { Grid, GridItem, Spacer, Text, Heading, AccordionPanel, Box, Tabs, TabList, TabPanels, Tab, TabPanel, Select, InputGroup, InputLeftAddon, Button, Accordion, AccordionButton, AccordionIcon, AccordionItem } from '@chakra-ui/react';
-
+import { Grid, GridItem, Spacer, Text, Heading, AccordionPanel, Box, Tabs, TabList, TabPanels, Tab, TabPanel, Select, InputGroup, InputLeftElement, Input, InputLeftAddon, Button, Accordion, AccordionButton, AccordionIcon, AccordionItem } from '@chakra-ui/react';
+import {
+    FiSearch
+} from 'react-icons/fi';
 import STable from '../../components/STable'
 import sdata from '../../data/data'
 import { useEffect, useState } from 'react'
@@ -32,6 +34,13 @@ export default function Home() {
         }))
     }
 
+    const searchData = (name:string) => {
+        setFData(data.filter((n:any) => {
+                let d = n.name
+                return d.toLowerCase().includes(name.toLowerCase())
+        }))
+    }
+
     return (
         <>
             <Head>
@@ -52,9 +61,9 @@ export default function Home() {
                     <TabPanels>
                         <TabPanel>
                             <Box>
-                                <Box display={'flex'}  padding={4} flexDirection={'row'} alignItems={'start'} justifyContent={'space-between'}>
-                                    <Text paddingTop={4} >{filter_data.length} Result(s)</Text>
-                                    <Accordion allowToggle  width={{base: '40%', md:'25%'}}>
+                                <Box display={'flex'} padding={4} flexDirection={'row'} alignItems={'start'} justifyContent={'space-between'}>
+                                    <Box display={'flex'} flexDirection={'row'} width={'100%'} alignItems={'center'}>
+                                    <Accordion allowToggle width={{ base: '40%', md: '25%' }}>
                                         <AccordionItem >
                                             <h2>
                                                 <AccordionButton>
@@ -83,15 +92,23 @@ export default function Home() {
                                             </AccordionPanel>
                                         </AccordionItem>
                                     </Accordion>
+                                    <Text marginLeft={'4%'}>{filter_data.length} Result(s)</Text>
+                                    </Box>
+                                        <InputGroup width={'40%'} display={{ base: 'none', md: 'flex' }}>
+                                            <InputLeftElement pointerEvents='none'>
+                                                <FiSearch color='gray.300' />
+                                            </InputLeftElement>
+                                            <Input type='text' placeholder='Search' marginRight={'3%'} onChange={(e) => searchData(e.target.value)}/>
+                                        </InputGroup>
                                 </Box>
                                 <STable data={filter_data} />
                             </Box>
                         </TabPanel>
                         <TabPanel>
-                            <YearwiseTable/>
+                            <YearwiseTable />
                         </TabPanel>
                         <TabPanel>
-                            <StatewiseTable/>
+                            <StatewiseTable />
                         </TabPanel>
                     </TabPanels>
                 </Tabs></Box>
