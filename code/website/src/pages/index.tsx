@@ -2,15 +2,15 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 import { Grid, GridItem, Spacer, Text, Heading } from '@chakra-ui/react'
-import data from './data/data';
-import BarChart from './components/DashBC'
-import DonutChart from './components/DashDC'
-import { DashRecent } from './components/DashRecent'
-import { DashMonthly } from './components/DashMonthly'
-import CustomAngleCircleChart from './components/DashSector'
+import data from '../data/data';
+import BarChart from '../components/DashBC'
+import DonutChart from '../components/DashDC'
+import { DashRecent } from '../components/DashRecent'
+import { DashMonthly } from '../components/DashMonthly'
+import CustomAngleCircleChart from '../components/DashSector'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {

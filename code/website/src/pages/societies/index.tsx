@@ -3,18 +3,18 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import dynamic from 'next/dynamic'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import states from '../data/states'
-import sectors from '../data/sectors'
+import Navbar from '../../components/Navbar'
+import Footer from '../../components/Footer'
+import states from '../../data/states'
+import sectors from '../../data/sectors'
 import { Grid, GridItem, Spacer, Text, Heading, AccordionPanel, Box, Tabs, TabList, TabPanels, Tab, TabPanel, Select, InputGroup, InputLeftAddon, Button, Accordion, AccordionButton, AccordionIcon, AccordionItem } from '@chakra-ui/react';
 
-import STable from '../components/STable'
-import sdata from '../data/data'
+import STable from '../../components/STable'
+import sdata from '../../data/data'
 import { useEffect, useState } from 'react'
 import { fdatasyncSync } from 'fs'
-import YearwiseTable from '../components/YearwiseTable'
-import StatewiseTable from '../components/StatewiseTable'
+import YearwiseTable from '../../components/YearwiseTable'
+import StatewiseTable from '../../components/StatewiseTable'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
