@@ -30,14 +30,12 @@ import {
 import {
     FiHome,
     FiTrendingUp,
-    FiCompass,
-    FiStar,
-    FiSettings,
     FiMenu,
-    FiBell,
-    FiChevronDown,
-    FiSearch
+    FiBriefcase,
+    FiUser,
 } from 'react-icons/fi';
+import {GoLaw} from 'react-icons/go';
+import {BiNotepad} from 'react-icons/bi'
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
 
@@ -48,9 +46,10 @@ interface LinkItemProps {
 }
 const LinkItems: Array<LinkItemProps> = [
     { name: 'Dashboard', icon: FiHome, url: "/" },
-    { name: 'Societies', icon: FiTrendingUp, url: "/societies" },
-    { name: 'Forms', icon: FiCompass, url: "/forms" },
-    { name: 'Acts', icon: FiCompass, url: "/acts" },
+    { name: 'Societies', icon: FiBriefcase, url: "/societies" },
+    { name: 'Forms', icon: BiNotepad, url: "/forms" },
+    { name: 'Acts', icon: GoLaw, url: "/acts" },
+    { name: 'Account', icon: FiUser, url: "/account" },
 
 ];
 
