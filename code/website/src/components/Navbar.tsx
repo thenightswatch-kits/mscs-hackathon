@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import ChatBot from './ChatBot';
+import { useRouter } from 'next/router';
 import {
     IconButton,
     Avatar,
@@ -59,6 +60,7 @@ export default function Navbar({
 }: {
     children: ReactNode;
 }) {
+   
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
         <Box minH="auto" bg={useColorModeValue('gray.100', 'gray.900')}>
@@ -93,6 +95,7 @@ interface SidebarProps extends BoxProps {
 }
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
+    const router = useRouter();
     return (
         <Box
             transition="3s ease"
@@ -110,7 +113,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
                 <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
             </Flex>
             {LinkItems.map((link) => (
-                <NavItem key={link.name} icon={link.icon} url={link.url}>
+                <NavItem key={link.name} icon={link.icon} url={link.url} isActive={router.pathname === link.url}>
                     {link.name}
                 </NavItem>
             ))}
@@ -120,10 +123,11 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
 
 interface NavItemProps extends FlexProps {
     url: string
-    icon: IconType;
+    icon: IconType,
+    isActive: Boolean,
     children: ReactText;
 }
-const NavItem = ({ url, icon, children, ...rest }: NavItemProps) => {
+const NavItem = ({ url, icon, isActive, children, ...rest }: NavItemProps) => {
     return (
         <Link href={url} style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
             <Flex
@@ -133,6 +137,9 @@ const NavItem = ({ url, icon, children, ...rest }: NavItemProps) => {
                 borderRadius="lg"
                 role="group"
                 cursor="pointer"
+                bg={isActive ? '#DBDFFF' : undefined}
+                color={isActive ? '#404A87' : undefined}
+                fontWeight={isActive ? 'medium': 'normal'}
                 _hover={{
                     bg: '#A1ACEF',
                     color: '#37375C',

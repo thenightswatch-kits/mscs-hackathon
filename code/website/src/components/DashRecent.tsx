@@ -16,7 +16,7 @@ export const DashRecent = ({ sorted_data }: any) => {
                         <Box>
                             <HStack>
                                 <Heading size='xs' padding={3} borderRadius={50} h={'100%'} dropShadow={'xl'} shadow={10}>{index+1}</Heading>
-                                <Heading size='xs' textTransform='uppercase'>
+                                <Heading size='xs' width='60%' textTransform='uppercase'>
                                     {e.name}
                                 </Heading>
                                 <Spacer />
