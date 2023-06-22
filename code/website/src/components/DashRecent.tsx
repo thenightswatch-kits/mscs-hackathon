@@ -5,7 +5,7 @@ export const DashRecent = ({ sorted_data }: any) => {
     return (
         <Card h={'100%'} p={5} shadow={0} borderRadius={0}>
             <CardHeader>
-                <Heading size='md'>Most Recent Socieites</Heading>
+                <Heading size='md'>Most Recent Societies</Heading>
                 <Text>List of the most recently registered societies:</Text>
             </CardHeader>
 

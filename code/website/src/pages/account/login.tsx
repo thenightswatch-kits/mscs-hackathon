@@ -18,6 +18,7 @@ import StatewiseTable from '../../components/StatewiseTable'
 import ActsTable from '@/components/ActsTable'
 import Checklist from '@/components/Checklist'
 import SignupCard from '@/components/SignUp'
+import SignIn from '@/components/SignIn'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
@@ -47,7 +48,7 @@ export default function Home() {
             <main className={`${styles.main} ${inter.className}`}>
                 <Navbar children={undefined} />
                 <Box marginLeft={{ base: 0, md: 60 }} minHeight={'100vh'}>
-                    <SignupCard/>
+                    <SignIn/>
                 </Box>
                 <Footer />
             </main>

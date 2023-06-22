@@ -37,5 +37,5 @@ export const DashMonthly = ({monthlyCounts}:any) => {
       }
     };
   
-    return <DynamicLineChart options={chartData.options} series={chartData.series} height={350} />;
+    return <DynamicLineChart options={chartData.options} series={chartData.series} height={400} />;
   };

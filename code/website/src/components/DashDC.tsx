@@ -19,7 +19,7 @@ const DonutChart: React.FC<DonutChartProps> = ({ countByYear }) => {
       type: 'donut',
     },
     dataLabels: {
-        enabled: true,
+        enabled: false,
         hideWhenNoData: true,
     },
     labels,
