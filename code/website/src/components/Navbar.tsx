@@ -36,6 +36,8 @@ import {
     FiBriefcase,
     FiUser,
 } from 'react-icons/fi';
+import {BsMailbox, BsBank} from 'react-icons/bs';
+
 import {GoLaw} from 'react-icons/go';
 import {BiNotepad} from 'react-icons/bi'
 import { IconType } from 'react-icons';
@@ -51,6 +53,8 @@ const LinkItems: Array<LinkItemProps> = [
     { name: 'Societies', icon: FiBriefcase, url: "/societies" },
     { name: 'Forms', icon: BiNotepad, url: "/forms" },
     { name: 'Acts', icon: GoLaw, url: "/acts" },
+    { name: 'Banks', icon: BsBank, url: "/banks" },
+    { name: 'Contact Us', icon: BsMailbox, url: "/contact" },
     { name: 'Account', icon: FiUser, url: "/account" },
 
 ];

@@ -20,20 +20,25 @@ import Checklist from '@/components/Checklist'
 import SignupCard from '@/components/SignUp'
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
-    const [state, setState] = useState<String>('All');
-    const [sector, setSector] = useState<String>('All');
-    const [search, setSearch] = useState('');
-    const [data, setData] = useState<any>(sdata)
-    const [filter_data, setFData] = useState<any>(data)
+import { useRouter } from 'next/router'
+import firebase_app from '../../../firebase/config'
+import { getAuth, } from 'firebase/auth'
 
-    const handleFilter = () => {
-        setFData(data.filter((item: any) => {
-            const sectorMatch = sector === "All" || item.sector === sector;
-            const stateMatch = state === "All" || item.state === state;
-            return sectorMatch && stateMatch;
-        }))
-    }
+export default function Home() {
+    const router = useRouter();
+    const auth = getAuth(firebase_app);
+    useEffect(() => {
+        // Check if a user is logged in
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (user) {
+                // If the user is not logged in, redirect to the login page
+                router.push('/account');
+            }
+        });
+
+        // Clean up the event listener on unmount
+        return () => unsubscribe();
+    }, []);
 
     return (
         <>
