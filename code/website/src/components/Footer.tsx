@@ -13,7 +13,7 @@ import {
   
   const Logo = (props: any) => {
     return (
-      <img src="https://mscs.dac.gov.in/images/emb.png" width={'50px'} height={'50px'}></img>
+      <img src="/Emblem.svg" width={'20px'} height={'20px'}></img>
     );
   };
   
@@ -65,7 +65,7 @@ import {
           spacing={4}
           justify={{ base: 'center', md: 'center' }}
           align={{ base: 'center', md: 'center' }}>
-          {/* <Logo /> */}
+          <Logo />
           <Heading size={'md'}> Ministry of Cooperation, Govt. of India</Heading>
           <Stack direction={'row'} spacing={6}>
             {/* <SocialButton label={'Twitter'} href={'#'}>

@@ -28,7 +28,7 @@ const BarChart: React.FC<BarChartProps> = ({ vdata }) => {
 
   const series = [
     {
-      name: 'Societies',
+      name: 'Society(s)',
       data,
     },
   ];

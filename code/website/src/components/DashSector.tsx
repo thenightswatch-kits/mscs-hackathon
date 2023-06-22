@@ -150,7 +150,7 @@ const CustomAngleCircleChart = ({ counts, sectors }) => {
     }]
   }
 
-  return <ApexChart options={options} series={options.series} type="radialBar" />;
+  return <ApexChart options={options} series={options.series} type="radialBar"/>;
 };
 
 export default CustomAngleCircleChart;

@@ -30,13 +30,13 @@ interface Data {
     data_of_registration: string;
     area_of_operation: string;
     sector: string;
-  }
-  
-  interface MyPageProps {
-    data: Data[];
-  }
+}
 
-export default function Home({data}:MyPageProps) {
+interface MyPageProps {
+    data: Data[];
+}
+
+export default function Home({ data }: MyPageProps) {
     const [state, setState] = useState<String>('All');
     const [sector, setSector] = useState<String>('All');
     const [search, setSearch] = useState('');
@@ -50,10 +50,12 @@ export default function Home({data}:MyPageProps) {
         }))
     }
 
-    const searchData = (name:string) => {
-        setFData(data.filter((n:any) => {
-                let d = n.name
-                return d.toLowerCase().includes(name.toLowerCase())
+    const searchData = (name: string) => {
+        setFData(data.filter((n: any) => {
+            let d = n.name
+            const sectorMatch = sector === "All" ||n.sector === sector;
+            const stateMatch = state === "All" ||n.state === state;
+            return sectorMatch && stateMatch && d.toLowerCase().includes(name.toLowerCase());
         }))
     }
 
@@ -79,43 +81,43 @@ export default function Home({data}:MyPageProps) {
                             <Box>
                                 <Box display={'flex'} padding={4} flexDirection={'row'} alignItems={'start'} justifyContent={'space-between'}>
                                     <Box display={'flex'} flexDirection={'row'} width={'100%'} alignItems={'center'}>
-                                    <Accordion allowToggle width={{ base: '40%', md: '25%' }}>
-                                        <AccordionItem >
-                                            <h2>
-                                                <AccordionButton>
-                                                    <Box as="span" flex='1' textAlign='left'>
-                                                        Filter
-                                                    </Box>
-                                                    <AccordionIcon />
-                                                </AccordionButton>
-                                            </h2>
-                                            <AccordionPanel pb={4}>
-                                                <Text>State: </Text>
-                                                <Select defaultValue={'All'} width={"100%"} padding={2} onChange={(e) => { setState(e.target.value) }}>
-                                                    <option value='All'>All</option>
-                                                    {states.map(e => {
-                                                        return <option value={e}>{e}</option>
-                                                    })}
-                                                </Select>
-                                                <Text>Sector: </Text>
-                                                <Select defaultValue={'All'} width={"100%"} padding={2} onChange={(e) => { setSector(e.target.value); console.log(e.target.value) }}>
-                                                    <option value='All'>All</option>
-                                                    {sectors.map(e => {
-                                                        return <option value={e}>{e}</option>
-                                                    })}
-                                                </Select>
-                                                <Button onClick={() => { handleFilter() }}>Apply Filter</Button>
-                                            </AccordionPanel>
-                                        </AccordionItem>
-                                    </Accordion>
-                                    <Text marginLeft={'4%'}>{filter_data.length} Result(s)</Text>
+                                        <Accordion allowToggle width={{ base: '40%', md: '25%' }}>
+                                            <AccordionItem >
+                                                <h2>
+                                                    <AccordionButton>
+                                                        <Box as="span" flex='1' textAlign='left'>
+                                                            Filter
+                                                        </Box>
+                                                        <AccordionIcon />
+                                                    </AccordionButton>
+                                                </h2>
+                                                <AccordionPanel pb={4}>
+                                                    <Text>State: </Text>
+                                                    <Select defaultValue={'All'} width={"100%"} padding={2} onChange={(e) => { setState(e.target.value) }}>
+                                                        <option value='All'>All</option>
+                                                        {states.map(e => {
+                                                            return <option value={e}>{e}</option>
+                                                        })}
+                                                    </Select>
+                                                    <Text>Sector: </Text>
+                                                    <Select defaultValue={'All'} width={"100%"} padding={2} onChange={(e) => { setSector(e.target.value); console.log(e.target.value) }}>
+                                                        <option value='All'>All</option>
+                                                        {sectors.map(e => {
+                                                            return <option value={e}>{e}</option>
+                                                        })}
+                                                    </Select>
+                                                    <Button onClick={() => { handleFilter() }}>Apply Filter</Button>
+                                                </AccordionPanel>
+                                            </AccordionItem>
+                                        </Accordion>
+                                        <Text marginLeft={'4%'}>{filter_data.length} Result(s)</Text>
                                     </Box>
-                                        <InputGroup width={'40%'} display={{ base: 'none', md: 'flex' }}>
-                                            <InputLeftElement pointerEvents='none'>
-                                                <FiSearch color='gray.300' />
-                                            </InputLeftElement>
-                                            <Input type='text' placeholder='Search' marginRight={'3%'} onChange={(e) => searchData(e.target.value)}/>
-                                        </InputGroup>
+                                    <InputGroup width={'40%'} display={{ base: 'none', md: 'flex' }}>
+                                        <InputLeftElement pointerEvents='none'>
+                                            <FiSearch color='gray.300' />
+                                        </InputLeftElement>
+                                        <Input type='text' placeholder='Search' marginRight={'3%'} onChange={(e) => searchData(e.target.value)} />
+                                    </InputGroup>
                                 </Box>
                                 <STable data={filter_data} />
                             </Box>
@@ -137,20 +139,20 @@ export default function Home({data}:MyPageProps) {
 export const getServerSideProps = async () => {
     const db = getFirestore(firebase_app);
     try {
-      const querySnapshot = await getDocs(collection(db, "mscs"));
-      const data = querySnapshot.docs.map((doc) => doc.data());
-      return {
-        props: {
-         data,
-        },
-      };
+        const querySnapshot = await getDocs(collection(db, "mscs"));
+        const data = querySnapshot.docs.map((doc) => doc.data());
+        return {
+            props: {
+                data,
+            },
+        };
     } catch (error) {
-      console.error('Error fetchingdata:', error);
-  
-      return {
-        props: {
-         data: [],
-        },
-      };
+        console.error('Error fetchingdata:', error);
+
+        return {
+            props: {
+                data: [],
+            },
+        };
     }
-  }
+}

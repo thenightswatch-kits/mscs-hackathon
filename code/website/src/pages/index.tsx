@@ -174,7 +174,7 @@ export default function Home({data}){
 
           <GridItem colSpan={1} display={'flex'} flexDirection={'column'} p={10} justifyContent={'space-evenly'} bgColor={'white'}>
             <Heading size='md'>Top Sector Types</Heading>
-            <Text alignSelf={'start'}>Top Five Sectors from 2016 to {currentYear}</Text>
+            <Text alignSelf={'start'}  marginTop={-2}>Top Five Sectors from 2016 to {currentYear}</Text>
             <br></br>
             <CustomAngleCircleChart sectors={topFiveSectors} counts={topFiveSectorCounts} />
           </GridItem>
